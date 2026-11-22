@@ -1,0 +1,38 @@
+{
+  "original": {
+    "A": {
+      "station": "A", "batch": "A-first-shift", "outlets": ["ok", "send"],
+      "states": [
+        {"name": "gauge-clear", "weight": "1/2", "records": [
+          {"record": "A-001", "piece": "sleeve-A17", "outlet": "ok", "probability": 1}
+        ]},
+        {"name": "gauge-tight", "weight": "1/2", "records": [
+          {"record": "A-002", "piece": "sleeve-A19", "outlet": "send", "probability": 1}
+        ]}
+      ]
+    },
+    "B": {
+      "station": "B", "batch": "B-first-shift", "outlets": ["back", "scrap"],
+      "states": [
+        {"name": "gauge-secondary", "weight": 1, "records": [
+          {"record": "B-001", "piece": "sleeve-B23", "outlet": "back", "probability": "1/2"},
+          {"record": "B-002", "piece": "sleeve-B29", "outlet": "scrap", "probability": "1/2"}
+        ]}
+      ]
+    }
+  },
+  "correction": {
+    "station": "A", "batch": "A-next-shift", "outlets": ["ok", "send"],
+    "states": [
+      {"name": "gauge-clear", "weight": "1/2", "records": [
+        {"record": "AC-001", "piece": "sleeve-A37", "outlet": "ok", "probability": "1/2"},
+        {"record": "AC-002", "piece": "sleeve-A38", "outlet": "send", "probability": "1/2"}
+      ]},
+      {"name": "gauge-tight", "weight": "1/2", "records": [
+        {"record": "AC-003", "piece": "sleeve-A39", "outlet": "ok", "probability": "1/2"},
+        {"record": "AC-004", "piece": "sleeve-A40", "outlet": "send", "probability": "1/2"}
+      ]}
+    ]
+  },
+  "route": {"A": {"ok": "pass", "send": "B"}, "B": {"back": "A", "scrap": "reject"}}
+}
